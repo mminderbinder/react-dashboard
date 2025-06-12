@@ -1,0 +1,38 @@
+/* AuthLayout.css */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container header {
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+.auth-container header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+}
+
+.auth-container header h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.auth-container header p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.6;
+}
+
+.auth-container main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}

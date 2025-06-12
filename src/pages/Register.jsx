@@ -1,6 +1,10 @@
+import RegisterForm from '../components/RegisterForm.jsx';
+
 const Register = () => {
     return (
-        <h1>Register</h1>
+        <main className="login-page">
+            <RegisterForm/>
+        </main>
     );
 };
 export default Register;
