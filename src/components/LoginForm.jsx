@@ -1,7 +1,8 @@
-import styles from './Form.module.css';
-import {Link, useNavigate} from 'react-router-dom';
-import {loginUser} from '../firebase/auth.js';
+import styles from "./Form.module.css";
+import {Link, useNavigate} from "react-router-dom";
+import {loginUser} from "../firebase/auth.js";
 import {useState} from "react";
+import {processFirebaseErrorMessage} from "../firebase/firebaseError.js";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -15,12 +16,13 @@ const LoginForm = () => {
 
         const {user, error: authError} = await loginUser(email, password);
         if (user) {
-            navigate('/dashboard');
+            navigate("/dashboard", {replace: true});
         } else {
-            setError('Invalid email or password');
+            const errorMessage = processFirebaseErrorMessage(authError);
+            setError(errorMessage || "Invalid email or password");
             console.log(authError);
         }
-    }
+    };
     return (
         <>
             <div className={styles.container}>
@@ -35,6 +37,7 @@ const LoginForm = () => {
                             placeholder="Email"
                             autoComplete="email"
                             required
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -47,6 +50,7 @@ const LoginForm = () => {
                             placeholder="Password"
                             autoComplete="current-password"
                             required
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
@@ -59,8 +63,7 @@ const LoginForm = () => {
                 </form>
             </div>
         </>
-    )
-}
-
+    );
+};
 
 export default LoginForm;
